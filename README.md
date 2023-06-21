@@ -22,7 +22,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | v18.29.1 |
-| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | aws-ia/eks-blueprints-addons/aws | n/a |
+| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | aws-ia/eks-blueprints-addons/aws | v1.0.0 |
 
 ## Resources
 
@@ -322,5 +322,10 @@
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | The name/id of the EKS cluster |
+| <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | The name/id of the EKS cluster |
+| <a name="output_cluster_version"></a> [cluster\_version](#output\_cluster\_version) | The name/id of the EKS cluster |
+| <a name="output_oidc_provider_arn"></a> [oidc\_provider\_arn](#output\_oidc\_provider\_arn) | The name/id of the EKS cluster |
 <!-- END_TF_DOCS -->
