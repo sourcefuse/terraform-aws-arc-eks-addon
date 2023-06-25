@@ -1,0 +1,6 @@
+---
+site_name: terraform-aws-arch-eks-blueprint
+site_description: ARC Terraform module for provisioning eks resources.
+
+plugins:
+  - techdocs-core

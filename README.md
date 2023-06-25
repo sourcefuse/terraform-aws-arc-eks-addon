@@ -1,4 +1,23 @@
 # terraform-aws-ref-arch-eks-addon
+
+## Usage
+
+```hcl
+        module "eks" {
+        source = "git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon?ref=v1.0.0"
+        tags = {
+        "Project": "eks-blueprint"
+        }
+
+        vpc_id = "vpc-07104b260f64a026b"
+
+        private_subnet_ids = ["subnet-07e1f1c21c6f47689", "subnet-0cdfd688b6a439e77"]
+
+        public_subnet_ids = ["subnet-0f6fc716d9cd6f6d9", "subnet-09a8bf8febe10cbe5"]
+
+        .......
+        }
+```
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -21,8 +40,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | v18.29.1 |
-| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | aws-ia/eks-blueprints-addons/aws | v1.0.0 |
+| <a name="module_eks"></a> [eks](#module\_eks) | ./modules/eks | n/a |
+| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | ./modules/eks-addons | n/a |
 
 ## Resources
 
