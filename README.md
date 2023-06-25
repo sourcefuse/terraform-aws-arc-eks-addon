@@ -1,5 +1,13 @@
 # terraform-aws-ref-arch-eks-addon
 
+## Overview
+
+The EKS Blueprint is a set of pre-configured templates, policies, and automation scripts that provide a standardized and secure foundation for EKS clusters. It streamlines the process of setting up EKS clusters with best practices and security considerations in mind. The Blueprint helps you establish a consistent and repeatable architecture for your EKS clusters, reducing manual configuration and improving operational efficiency.
+
+EKS Add-ons are optional components that extend the functionality of your EKS clusters. These add-ons provide additional capabilities and services that enhance the management and operation of your Kubernetes workloads on EKS
+
+The module assumes that upstream dependencies, namely networking dependencies, are created upstream and the values are passed into this module via mechanisms such as Terraform data source queries.
+
 ## Usage
 
 ```hcl
