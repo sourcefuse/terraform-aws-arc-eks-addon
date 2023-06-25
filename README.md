@@ -6,7 +6,12 @@ EKS Blueprints helps you compose complete EKS clusters that are fully bootstrapp
 
 You can use EKS Blueprints to easily bootstrap an EKS cluster with Amazon EKS add-ons as well as a wide range of popular open-source add-ons, including Prometheus, Karpenter, Nginx, Traefik, AWS Load Balancer Controller, Fluent Bit, Keda, ArgoCD, and more. EKS Blueprints also helps you implement relevant security controls needed to operate workloads from multiple teams in the same cluster.
 
-The module assumes that upstream dependencies, namely networking dependencies, are created upstream and the values are passed into this module via mechanisms such as Terraform data source queries.
+
+## Architecture
+
+![Architecture](./static/arch.png)
+
+The module assumes that upstream dependencies, namely networking dependencies, are created upstream and the values are passed into this module via mechanisms such as Terraform data source queries. Similarly bations and related load balancers are shown as per best practices and has to be deployed separately from upstream module. The shown addons are example addons and may and may not be a fit for your architecture please enable them accordingly. 
 
 ## Usage
 
