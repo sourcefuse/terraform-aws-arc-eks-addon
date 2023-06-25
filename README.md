@@ -18,6 +18,8 @@ The module assumes that upstream dependencies, namely networking dependencies, a
 ```hcl
         module "eks" {
         source = "git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon?ref=v1.0.0"
+
+         #-----------EKS------------------#
         tags = {
         "Project": "eks-blueprint"
         }
@@ -27,6 +29,16 @@ The module assumes that upstream dependencies, namely networking dependencies, a
         private_subnet_ids = ["subnet-07e1f1c21c6f47689", "subnet-0cdfd688b6a439e77"]
 
         public_subnet_ids = ["subnet-0f6fc716d9cd6f6d9", "subnet-09a8bf8febe10cbe5"]
+
+        #-----------EKS Addon------------------#
+
+        enable_amazon_eks_aws_ebs_csi_driver = false
+        
+        enable_aws_efs_csi_driver = false
+        
+        enable_aws_load_balancer_controller = false
+        
+        enable_metrics_server = false
 
         .......
         }
