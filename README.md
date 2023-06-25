@@ -2,9 +2,9 @@
 
 ## Overview
 
-The EKS Blueprint is a set of pre-configured templates, policies, and automation scripts that provide a standardized and secure foundation for EKS clusters. It streamlines the process of setting up EKS clusters with best practices and security considerations in mind. The Blueprint helps you establish a consistent and repeatable architecture for your EKS clusters, reducing manual configuration and improving operational efficiency.
+EKS Blueprints helps you compose complete EKS clusters that are fully bootstrapped with the operational software that is needed to deploy and operate workloads. With EKS Blueprints, you describe the configuration for the desired state of your EKS environment, such as the control plane, worker nodes, and Kubernetes add-ons, as an IaC blueprint. Once a blueprint is configured, you can use it to stamp out consistent environments across multiple AWS accounts and Regions using continuous deployment automation.
 
-EKS Add-ons are optional components that extend the functionality of your EKS clusters. These add-ons provide additional capabilities and services that enhance the management and operation of your Kubernetes workloads on EKS
+You can use EKS Blueprints to easily bootstrap an EKS cluster with Amazon EKS add-ons as well as a wide range of popular open-source add-ons, including Prometheus, Karpenter, Nginx, Traefik, AWS Load Balancer Controller, Fluent Bit, Keda, ArgoCD, and more. EKS Blueprints also helps you implement relevant security controls needed to operate workloads from multiple teams in the same cluster.
 
 The module assumes that upstream dependencies, namely networking dependencies, are created upstream and the values are passed into this module via mechanisms such as Terraform data source queries.
 
