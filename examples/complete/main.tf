@@ -1,5 +1,5 @@
 module "eks" {
-  source  = "./modules/eks"
+  source = "../.."
 
   create = var.create_eks
 
@@ -58,39 +58,5 @@ module "eks" {
   cluster_identity_providers       = var.cluster_identity_providers
 
   tags = var.tags
-}
 
-
-module "eks_blueprints_addons" {
-  source = "./modules/eks-addons"
-  cluster_name      = module.eks.cluster_id
-  cluster_endpoint  = module.eks.cluster_endpoint
-  cluster_version   = module.eks.cluster_version
-  oidc_provider_arn = module.eks.oidc_provider_arn
-
-  eks_addons = {
-    aws-ebs-csi-driver = {
-      most_recent = true
-    }
-    coredns = {
-      most_recent = true
-    }
-    vpc-cni = {
-      most_recent = true
-    }
-    kube-proxy = {
-      most_recent = true
-    }
-  }
-
-  enable_aws_load_balancer_controller    = true
-  enable_cluster_proportional_autoscaler = false
-  enable_karpenter                       = true
-  enable_kube_prometheus_stack           = true
-  enable_metrics_server                  = true
-  enable_external_dns                    = true
-  enable_external_secrets = true
-  enable_argocd = true
-
-  tags = var.tags
 }
