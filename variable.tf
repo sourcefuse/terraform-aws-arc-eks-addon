@@ -138,23 +138,9 @@ variable "cluster_endpoint_public_access_cidrs" {
 #-------------------------------
 # EKS Cluster ENCRYPTION
 #-------------------------------
-variable "cluster_kms_key_arn" {
-  description = "A valid EKS Cluster KMS Key ARN to encrypt Kubernetes secrets"
-  type        = string
-  default     = null
-}
 
-variable "cluster_kms_key_deletion_window_in_days" {
-  description = "The waiting period, specified in number of days (7 - 30). After the waiting period ends, AWS KMS deletes the KMS key"
-  type        = number
-  default     = 30
-}
 
-variable "cluster_kms_key_additional_admin_arns" {
-  description = "A list of additional IAM ARNs that should have FULL access (kms:*) in the KMS key policy"
-  type        = list(string)
-  default     = []
-}
+
 
 variable "enable_cluster_encryption" {
   description = "Determines whether cluster encryption is enabled"
@@ -304,11 +290,6 @@ variable "self_managed_node_groups" {
   default     = {}
 }
 
-variable "enable_windows_support" {
-  description = "Enable Windows support"
-  type        = bool
-  default     = false
-}
 
 #-------------------------------
 # Worker Additional Variables
@@ -399,11 +380,6 @@ variable "aws_auth_additional_labels" {
   default     = {}
 }
 
-variable "eks_readiness_timeout" {
-  description = "The maximum time (in seconds) to wait for EKS API server endpoint to become healthy"
-  type        = number
-  default     = "600"
-}
 
 ################################################################################
 # Argo Rollouts
@@ -422,7 +398,7 @@ variable "argo_rollouts" {
 }
 
 ################################################################################
-# Argo Workflows
+# Argo Workflows 
 ################################################################################
 
 variable "enable_argo_workflows" {
