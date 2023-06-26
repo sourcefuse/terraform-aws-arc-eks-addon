@@ -18,11 +18,6 @@ variable "private_subnet_ids" {
   default     = []
 }
 
-variable "public_subnet_ids" {
-  description = "List of public subnets Ids for the worker nodes"
-  type        = list(string)
-  default     = []
-}
 
 variable "control_plane_subnet_ids" {
   description = "A list of subnet IDs where the EKS cluster control plane (ENIs) will be provisioned. Used for expanding the pool of subnets used by nodes/node groups without replacing the EKS control plane"
@@ -172,11 +167,6 @@ variable "cluster_service_ipv4_cidr" {
   default     = null
 }
 
-variable "cluster_service_ipv6_cidr" {
-  description = "The IPV6 Service CIDR block to assign Kubernetes service IP addresses"
-  type        = string
-  default     = null
-}
 
 #-------------------------------
 # EKS Cluster CloudWatch Logging
@@ -330,11 +320,7 @@ variable "node_security_group_tags" {
   default     = {}
 }
 
-variable "worker_additional_security_group_ids" {
-  description = "A list of additional security group ids to attach to worker instances"
-  type        = list(string)
-  default     = []
-}
+
 
 #-------------------------------
 # Fargate
@@ -348,37 +334,10 @@ variable "fargate_profiles" {
 #-------------------------------
 # aws-auth Config Map
 #-------------------------------
-variable "map_accounts" {
-  description = "Additional AWS account numbers to add to the aws-auth ConfigMap"
-  type        = list(string)
-  default     = []
-}
 
-variable "map_roles" {
-  description = "Additional IAM roles to add to the aws-auth ConfigMap"
-  type = list(object({
-    rolearn  = string
-    username = string
-    groups   = list(string)
-  }))
-  default = []
-}
 
-variable "map_users" {
-  description = "Additional IAM users to add to the aws-auth ConfigMap"
-  type = list(object({
-    userarn  = string
-    username = string
-    groups   = list(string)
-  }))
-  default = []
-}
 
-variable "aws_auth_additional_labels" {
-  description = "Additional kubernetes labels applied on aws-auth ConfigMap"
-  type        = map(string)
-  default     = {}
-}
+
 
 
 ################################################################################

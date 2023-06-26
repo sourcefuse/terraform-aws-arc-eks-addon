@@ -57,6 +57,7 @@ module "eks" {
   attach_cluster_encryption_policy = false
   cluster_encryption_config        = var.enable_cluster_encryption ? var.cluster_encryption_config : []
   cluster_identity_providers       = var.cluster_identity_providers
+  fargate_profiles = var.fargate_profiles
   tags = var.tags
 }
 
@@ -82,8 +83,9 @@ module "eks_blueprints_addons" {
       most_recent = true
     }
   }
-
-  eks_addons                             = var.eks_addons
+  
+  
+  eks_addons_timeouts                    = var.eks_addons_timeouts
   enable_aws_load_balancer_controller    = var.enable_aws_load_balancer_controller
   aws_load_balancer_controller           = var.aws_load_balancer_controller
   enable_cluster_proportional_autoscaler = var.enable_cluster_proportional_autoscaler
@@ -95,14 +97,17 @@ module "eks_blueprints_addons" {
   enable_karpenter                       = var.enable_karpenter
   enable_kube_prometheus_stack           = var.enable_kube_prometheus_stack
   kube_prometheus_stack                  = var.kube_prometheus_stack
-  metrics_server = var.metrics_server
+  metrics_server                         = var.metrics_server
   enable_metrics_server                  = var.enable_metrics_server 
   enable_external_dns                    = var.enable_external_dns 
-  external_dns = var.external_dns
+  external_dns                           = var.external_dns
   external_dns_route53_zone_arns         = var.external_dns_route53_zone_arns
-  enable_external_secrets                = true
+  enable_external_secrets                = var.enable_external_secrets
+  external_secrets                       = var.external_secrets
   enable_argocd                          = var.enable_argocd
   argocd                                 = var.argocd
+  argo_rollouts                          = var.argo_rollouts
+  enable_argo_rollouts                   = var.enable_argo_rollouts
   argo_workflows                         = var.argo_workflows
   enable_argo_workflows                  = var.enable_argo_workflows
   cluster_autoscaler                     = var.cluster_autoscaler
@@ -110,8 +115,15 @@ module "eks_blueprints_addons" {
   enable_aws_cloudwatch_metrics          = var.enable_aws_cloudwatch_metrics
   aws_cloudwatch_metrics                 =  var.aws_cloudwatch_metrics
   external_secrets_ssm_parameter_arns    = var.external_secrets_ssm_parameter_arns
+  external_secrets_secrets_manager_arns  = var.external_secrets_secrets_manager_arns
+  ingress_nginx                          = var.ingress_nginx
+  enable_ingress_nginx                   = var.enable_ingress_nginx
+  aws_privateca_issuer                   = var.aws_privateca_issuer
+  enable_aws_privateca_issuer            = var.enable_aws_privateca_issuer
   velero                                 = var.velero
   enable_velero                          = var.enable_velero
+  aws_for_fluentbit                      = var.aws_for_fluentbit
+  enable_aws_for_fluentbit               = var.enable_aws_for_fluentbit
   aws_for_fluentbit_cw_log_group         = var.aws_for_fluentbit_cw_log_group
   enable_aws_node_termination_handler    = var.enable_aws_node_termination_handler
   aws_node_termination_handler           = var.aws_node_termination_handler
@@ -121,11 +133,20 @@ module "eks_blueprints_addons" {
   enable_cert_manager                    = var.enable_cert_manager
   cert_manager_route53_hosted_zone_arns  = var.cert_manager_route53_hosted_zone_arns
   enable_aws_efs_csi_driver              = var.enable_aws_efs_csi_driver
-  aws_efs_csi_driver                     = var.enable_aws_efs_csi_driver
+  aws_efs_csi_driver                     = var.aws_efs_csi_driver
   aws_fsx_csi_driver                     = var.aws_fsx_csi_driver
   enable_aws_fsx_csi_driver              = var.enable_aws_fsx_csi_driver
   secrets_store_csi_driver_provider_aws  = var.secrets_store_csi_driver_provider_aws
   enable_fargate_fluentbit               = var.enable_fargate_fluentbit
+  fargate_fluentbit                      = var.fargate_fluentbit
   enable_secrets_store_csi_driver_provider_aws = var.enable_secrets_store_csi_driver_provider_aws
-  tags = var.tags
+  enable_secrets_store_csi_driver        = var.enable_secrets_store_csi_driver
+  secrets_store_csi_driver               = var.secrets_store_csi_driver
+  external_secrets_kms_key_arns          = var.external_secrets_kms_key_arns
+  enable_gatekeeper                      = var.enable_gatekeeper
+  gatekeeper                             = var.gatekeeper
+  fargate_fluentbit_cw_log_group         = var.fargate_fluentbit_cw_log_group
+  vpa                                    = var.vpa
+  enable_vpa                             = var.enable_vpa
+  tags                                   = var.tags
 }
