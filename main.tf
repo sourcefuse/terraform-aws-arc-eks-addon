@@ -69,6 +69,7 @@ module "eks" {
   cluster_kms_key_arn                    = var.cluster_kms_key_arn
   cluster_kms_key_additional_admin_arns  = var.cluster_kms_key_additional_admin_arns
   external_secrets_kms_key_arns          = var.external_secrets_kms_key_arns
+  external_secrets                       = var.external_secrets
   enable_secrets_store_csi_driver        = var.enable_secrets_store_csi_driver
   cluster_kms_key_deletion_window_in_days = var.cluster_kms_key_deletion_window_in_days
   
@@ -109,8 +110,8 @@ module "eks" {
 
   aws_auth_additional_labels            = var.aws_auth_additional_labels
   map_roles                             = var.map_roles
-
   map_accounts = var.map_accounts
+  map_users    = var.map_users
 
   enable_argocd          = var.enable_argocd
   enable_argo_rollouts   = var.enable_argo_rollouts
@@ -125,6 +126,8 @@ module "eks" {
   kube_prometheus_stack        = var.kube_prometheus_stack
 
   eks_addons_timeouts          = var.eks_addons_timeouts
+  eks_addons                   = var.eks_addons
+
   
 
 
@@ -160,8 +163,10 @@ module "eks_blueprints_addons" {
   enable_aws_load_balancer_controller    = var.enable_aws_load_balancer_controller 
   aws_load_balancer_controller           = var.aws_load_balancer_controller
   enable_cluster_proportional_autoscaler = var.enable_cluster_proportional_autoscaler
-  enable_cluster_autoscaler = var.enable_cluster_autoscaler
-  cluster_autoscaler        = var.cluster_autoscaler
+  cluster_proportional_autoscaler        = var.cluster_proportional_autoscaler
+  enable_cluster_autoscaler              = var.enable_cluster_autoscaler
+  cluster_autoscaler                     = var.cluster_autoscaler
+  vpa                                    = var.vpa
   enable_vpa                             = var.enable_vpa
   karpenter                              = var.karpenter
   enable_karpenter                       = var.enable_karpenter
@@ -170,11 +175,9 @@ module "eks_blueprints_addons" {
   metrics_server                         = var.metrics_server
   enable_external_dns                    = var.enable_external_dns 
   enable_external_secrets                = var.enable_external_secrets
-  argocd = var.argocd
-  tags = var.tags
-  velero = var.velero
-  enable_velero = var.enable_velero
-  eks_readiness_timeout = var.eks_readiness_timeout
- 
-  
+  argocd                                 = var.argocd
+  tags                                   = var.tags
+  velero                                 = var.velero
+  enable_velero                          = var.enable_velero
+  eks_readiness_timeout                  = var.eks_readiness_timeout
 }
