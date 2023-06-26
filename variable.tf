@@ -576,11 +576,6 @@ variable "cluster_proportional_autoscaler" {
 # EKS Addons
 ################################################################################
 
-variable "eks_addons" {
-  description = "Map of EKS addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
-  type        = any
-  default     = {}
-}
 
 variable "eks_addons_timeouts" {
   description = "Create, update, and delete timeout configurations for the EKS addons"
