@@ -58,6 +58,7 @@ module "eks" {
   cluster_identity_providers       = var.cluster_identity_providers
 
   enable_aws_privateca_issuer = var.enable_aws_privateca_issuer
+  aws_privateca_issuer = var.aws_privateca_issuer
 
   tags = var.tags
 }
