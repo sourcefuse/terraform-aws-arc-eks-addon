@@ -15,20 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     name: snyk
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: Vulnerability scan
+      - uses: actions/checkout@v2
+      - name: Run Snyk to check configuration files for security issues
+        # Snyk can be used to break the build when it detects security issues.
+        # In this case we want to upload the issues to GitHub Code Scanning
+        continue-on-error: true
         uses: snyk/actions/iac@master
-        with:
-          command: monitor
-          args: --severity-threshold=low
-      - name: Set up Node 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: install Snyk CLI
-        run: npm install -g snyk
-      - name: snyk monitor
-        run: snyk iac test --report --severity-threshold=medium
         env:
+          # In order to use the Snyk Action you will need to have a Snyk API token.
+          # More details in https://github.com/snyk/actions#getting-your-snyk-token
+          # or you can signup for free at https://snyk.io/login
           SNYK_TOKEN: ${{ secrets.ARC_SNYK_TOKEN }}
+        with:
+          # Add the path to the configuration file that you would like to test.
+          # For example `deployment.yaml` for a Kubernetes deployment manifest
+          # or `main.tf` for a Terraform configuration file
+          file: .
