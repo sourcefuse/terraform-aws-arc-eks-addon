@@ -6,8 +6,16 @@ ignore:
     - '*':
         reason: >-
           The secrets encryption and decryption can be controlled from
-          variables.tf file. Currently empty value is passed as default so as user can make a better choice. 
-          Also issue is coming from core EKS module developed by AWS
+          variables.tf file. Currently empty value is passed as default so as
+          user can make a better choice.  Also issue is coming from core EKS
+          module developed by AWS
         expires: 2024-08-01T00:00:00.000Z
         created: 2023-06-26T06:17:38.515Z
+  SNYK-CC-TF-94:
+    - '*':
+        reason: >-
+          The default CIDR is 0.0.0.0/0 user can customise once module is being
+          setup.There is a dedicated variables to control
+        expires: 2024-08-01T00:00:00.000Z
+        created: 2023-06-26T06:26:57.066Z
 patch: {}
