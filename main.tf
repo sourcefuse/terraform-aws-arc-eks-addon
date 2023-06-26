@@ -57,6 +57,8 @@ module "eks" {
   cluster_encryption_config        = var.enable_cluster_encryption ? var.cluster_encryption_config : []
   cluster_identity_providers       = var.cluster_identity_providers
 
+  enable_aws_privateca_issuer = var.enable_aws_privateca_issuer
+
   tags = var.tags
 }
 
