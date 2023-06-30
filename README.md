@@ -17,7 +17,7 @@ The module assumes that upstream dependencies, namely networking dependencies, a
 
 ```hcl
         module "eks" {
-        source = "git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon?ref=v1.0.0"
+        source = "git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon?ref=v1.0.1"
         tags = {
         "Project": "eks-blueprint"
         }
