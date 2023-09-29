@@ -16,7 +16,7 @@ See [`examples/user_data/`](https://github.com/terraform-aws-modules/terraform-a
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | >= 2.0 |
+| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | 2.3.2 |
 
 ## Modules
 
