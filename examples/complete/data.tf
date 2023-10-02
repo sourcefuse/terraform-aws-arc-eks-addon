@@ -1,13 +1,3 @@
-################################################################################
-## account
-################################################################################
-data "aws_partition" "this" {}
-
-################################################################################
-## network
-################################################################################
-data "aws_caller_identity" "this" {}
-
 data "aws_vpc" "vpc" {
   filter {
     name   = "tag:Name"
@@ -20,15 +10,10 @@ data "aws_subnets" "private" {
     name = "tag:Name"
 
     values = [
-      "${var.namespace}-${var.environment}-private-${var.region}a",
-      "${var.namespace}-${var.environment}-private-${var.region}b",
+      "${var.namespace}-${var.environment}-private-subnet-private-${var.region}a",
+      "${var.namespace}-${var.environment}-private--subnet-private-${var.region}b",
     ]
   }
-}
-
-data "aws_subnet" "private" {
-  for_each = toset(data.aws_subnets.private.ids)
-  id       = each.value
 }
 
 data "aws_subnets" "public" {
@@ -36,13 +21,8 @@ data "aws_subnets" "public" {
     name = "tag:Name"
 
     values = [
-      "${var.namespace}-${var.environment}-public-${var.region}a",
-      "${var.namespace}-${var.environment}-public-${var.region}b",
+      "${var.namespace}-${var.environment}-public-subnet-public-${var.region}a",
+      "${var.namespace}-${var.environment}-public-subnet-public-${var.region}b",
     ]
   }
-}
-
-data "aws_subnet" "public" {
-  for_each = toset(data.aws_subnets.public.ids)
-  id       = each.value
 }

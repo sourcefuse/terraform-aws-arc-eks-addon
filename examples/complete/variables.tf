@@ -16,13 +16,13 @@ variable "cluster_timeouts" {
 variable "cluster_name" {
   description = "EKS Cluster Name"
   type        = string
-  default     = ""
+  default     = "poc-eks-addon"
 }
 
 variable "cluster_version" {
-  description = "Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.24`)"
+  description = "Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.25`)"
   type        = string
-  default     = "1.24"
+  default     = "1.25"
 }
 
 #-------------------------------
@@ -881,4 +881,3 @@ variable "environment" {
   description = "Name of the environment resources will belong to."
   default     = "poc"
 }
-
