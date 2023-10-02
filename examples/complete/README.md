@@ -14,7 +14,6 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_eks"></a> [eks](#module\_eks) | git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon | v1.0.0 |
-| <a name="module_kms"></a> [kms](#module\_kms) | git::https://github.com/mayank0202/terraform-aws-arc-kms | 1.0.0 |
 | <a name="module_tags"></a> [tags](#module\_tags) | sourcefuse/arc-tags/aws | 1.2.3 |
 
 ## Resources

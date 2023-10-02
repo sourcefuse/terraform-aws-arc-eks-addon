@@ -198,6 +198,13 @@ module "eks" {
 | <a name="output_oidc_provider_arn"></a> [oidc\_provider\_arn](#output\_oidc\_provider\_arn) | The oidc arn the EKS cluster |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Versioning
+
+This project uses a `.version` file at the root of the repo which the pipeline reads from and does a git tag.
+
+When you intend to commit to `main`, you will need to increment this version. Once the project is merged,
+the pipeline will kick off and tag the latest git commit.
+
 ## Development
 
 ### Prerequisites
