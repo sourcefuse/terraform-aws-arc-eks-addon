@@ -1,30 +1,3 @@
-variable "tags" {
-  description = "Additional tags (e.g. `map('BusinessUnit`,`XYZ`)"
-  type        = map(string)
-  default     = {}
-}
-
-#-------------------------------
-# VPC Config for EKS Cluster
-#-------------------------------
-variable "vpc_id" {
-  description = "VPC Id"
-  type        = string
-}
-
-variable "private_subnet_ids" {
-  description = "List of private subnets Ids for the cluster and worker nodes"
-  type        = list(string)
-  default     = []
-}
-
-
-variable "control_plane_subnet_ids" {
-  description = "A list of subnet IDs where the EKS cluster control plane (ENIs) will be provisioned. Used for expanding the pool of subnets used by nodes/node groups without replacing the EKS control plane"
-  type        = list(string)
-  default     = []
-}
-
 #-------------------------------
 # EKS module variables (terraform-aws-modules/eks/aws)
 #-------------------------------
@@ -43,13 +16,13 @@ variable "cluster_timeouts" {
 variable "cluster_name" {
   description = "EKS Cluster Name"
   type        = string
-  default     = ""
+  default     = "poc-eks-addon"
 }
 
 variable "cluster_version" {
-  description = "Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.24`)"
+  description = "Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.25`)"
   type        = string
-  default     = "1.24"
+  default     = "1.25"
 }
 
 #-------------------------------
@@ -133,9 +106,23 @@ variable "cluster_endpoint_public_access_cidrs" {
 #-------------------------------
 # EKS Cluster ENCRYPTION
 #-------------------------------
+variable "cluster_kms_key_arn" {
+  description = "A valid EKS Cluster KMS Key ARN to encrypt Kubernetes secrets"
+  type        = string
+  default     = null
+}
 
+variable "cluster_kms_key_deletion_window_in_days" {
+  description = "The waiting period, specified in number of days (7 - 30). After the waiting period ends, AWS KMS deletes the KMS key"
+  type        = number
+  default     = 30
+}
 
-
+variable "cluster_kms_key_additional_admin_arns" {
+  description = "A list of additional IAM ARNs that should have FULL access (kms:*) in the KMS key policy"
+  type        = list(string)
+  default     = []
+}
 
 variable "enable_cluster_encryption" {
   description = "Determines whether cluster encryption is enabled"
@@ -167,6 +154,11 @@ variable "cluster_service_ipv4_cidr" {
   default     = null
 }
 
+variable "cluster_service_ipv6_cidr" {
+  description = "The IPV6 Service CIDR block to assign Kubernetes service IP addresses"
+  type        = string
+  default     = null
+}
 
 #-------------------------------
 # EKS Cluster CloudWatch Logging
@@ -280,6 +272,11 @@ variable "self_managed_node_groups" {
   default     = {}
 }
 
+variable "enable_windows_support" {
+  description = "Enable Windows support"
+  type        = bool
+  default     = false
+}
 
 #-------------------------------
 # Worker Additional Variables
@@ -320,7 +317,11 @@ variable "node_security_group_tags" {
   default     = {}
 }
 
-
+variable "worker_additional_security_group_ids" {
+  description = "A list of additional security group ids to attach to worker instances"
+  type        = list(string)
+  default     = []
+}
 
 #-------------------------------
 # Fargate
@@ -334,11 +335,43 @@ variable "fargate_profiles" {
 #-------------------------------
 # aws-auth Config Map
 #-------------------------------
+variable "map_accounts" {
+  description = "Additional AWS account numbers to add to the aws-auth ConfigMap"
+  type        = list(string)
+  default     = []
+}
 
+variable "map_roles" {
+  description = "Additional IAM roles to add to the aws-auth ConfigMap"
+  type = list(object({
+    rolearn  = string
+    username = string
+    groups   = list(string)
+  }))
+  default = []
+}
 
+variable "map_users" {
+  description = "Additional IAM users to add to the aws-auth ConfigMap"
+  type = list(object({
+    userarn  = string
+    username = string
+    groups   = list(string)
+  }))
+  default = []
+}
 
+variable "aws_auth_additional_labels" {
+  description = "Additional kubernetes labels applied on aws-auth ConfigMap"
+  type        = map(string)
+  default     = {}
+}
 
-
+variable "eks_readiness_timeout" {
+  description = "The maximum time (in seconds) to wait for EKS API server endpoint to become healthy"
+  type        = number
+  default     = "600"
+}
 
 ################################################################################
 # Argo Rollouts
@@ -357,7 +390,7 @@ variable "argo_rollouts" {
 }
 
 ################################################################################
-# Argo Workflows 
+# Argo Workflows
 ################################################################################
 
 variable "enable_argo_workflows" {
@@ -576,6 +609,11 @@ variable "cluster_proportional_autoscaler" {
 # EKS Addons
 ################################################################################
 
+variable "eks_addons" {
+  description = "Map of EKS addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
+  type        = any
+  default     = {}
+}
 
 variable "eks_addons_timeouts" {
   description = "Create, update, and delete timeout configurations for the EKS addons"
@@ -821,4 +859,25 @@ variable "vpa" {
   description = "Vertical Pod Autoscaler addon configuration values"
   type        = any
   default     = {}
+}
+
+################################################################################
+## shared
+################################################################################
+variable "region" {
+  type        = string
+  default     = "us-east-1"
+  description = "AWS region"
+}
+
+variable "namespace" {
+  type        = string
+  description = "Namespace for the resources."
+  default     = "arc"
+}
+
+variable "environment" {
+  type        = string
+  description = "Name of the environment resources will belong to."
+  default     = "poc"
 }
