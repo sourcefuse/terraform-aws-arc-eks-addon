@@ -1,4 +1,6 @@
-# terraform-aws-ref-arch-eks-addon
+# [terraform-aws-arc-eks-addon](https://github.com/sourcefuse/terraform-aws-arc-eks-addon)
+
+[![Known Vulnerabilities](https://github.com/sourcefuse/terraform-aws-arc-eks-addon/actions/workflows/snyk.yaml/badge.svg)](https://github.com/sourcefuse/terraform-aws-arc-eks-addon/actions/workflows/snyk.yaml)
 
 ## Overview
 
@@ -17,33 +19,25 @@ The module assumes that upstream dependencies, namely networking dependencies, a
 
 **Note**: the example below is does not have a pinned version. Be sure to pin your version. Refer to the `example` folder for a working example version.
 
+To checkout the Full example Please visit [example](https://github.com/sourcefuse/terraform-aws-arc-eks-addon/blob/main/examples/complete/main.tf)
+
 ```hcl
 module "eks" {
-  source = "git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon?ref=v1.0.0"
-  tags   = module.tags.tags
-  vpc_id = data.aws_vpc.vpc.id
-  private_subnet_ids = data.aws_subnets.private.ids
-  public_subnet_ids = data.aws_subnets.public.ids
-  control_plane_subnet_ids = concat(data.aws_subnets.private.ids, data.aws_subnets.public.ids)
-  create_eks = var.create_eks
-  cluster_timeouts = var.cluster_timeouts
-  cluster_name     = var.cluster_name
-  cluster_version = var.cluster_version
-  create_cluster_security_group = var.create_cluster_security_group
-  cluster_security_group_name = var.cluster_security_group_name
-  cluster_security_group_use_name_prefix = var.cluster_security_group_use_name_prefix
-  cluster_security_group_description = var.cluster_security_group_description
-  cluster_security_group_id = var.cluster_security_group_id
-  cluster_additional_security_group_ids = var.cluster_additional_security_group_ids
-  cluster_security_group_additional_rules = var.cluster_security_group_additional_rules
-  cluster_security_group_tags = module.tags.tags
-  create_cluster_primary_security_group_tags = var.create_cluster_primary_security_group_tags
-  cluster_endpoint_public_access = var.cluster_endpoint_public_access
-  cluster_endpoint_private_access = var.cluster_endpoint_private_access
-  cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
-  cluster_kms_key_arn = var.cluster_kms_key_arn
+  source                             = "git::https://github.com/sourcefuse/terraform-aws-arc-eks-addon?ref=v1.0.0"
+  tags                               = module.tags.tags
+  vpc_id                             = data.aws_vpc.vpc.id
+  private_subnet_ids                 = data.aws_subnets.private.ids
+  public_subnet_ids                  = data.aws_subnets.public.ids
+  control_plane_subnet_ids           = concat(data.aws_subnets.private.ids, data.aws_subnets.public.ids)
+  create_eks                         = var.create_eks
+  cluster_timeouts                   = var.cluster_timeouts
+  cluster_name                       = var.cluster_name
+  cluster_version                    = var.cluster_version
+  create_cluster_security_group      = var.create_cluster_security_group
+  cluster_security_group_name        = var.cluster_security_group_name
+  cluster_kms_key_arn                = var.cluster_kms_key_arn
 
-        ....................................
+  .............................................................
 }
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
