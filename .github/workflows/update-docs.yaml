@@ -36,3 +36,4 @@ jobs:
           user-name: ${{ github.actor }}
           target-branch: main
           commit-message: ${{ github.event.head_commit.message }}
+          
