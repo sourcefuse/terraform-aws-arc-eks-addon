@@ -12,15 +12,6 @@ module "tags" {
   }
 }
 
-module "kms" {
-  source                  = "git::https://github.com/mayank0202/terraform-aws-arc-kms?ref=1.0.0"
-  enabled                 = true
-  deletion_window_in_days = 7
-  enable_key_rotation     = true
-  alias                   = "alias/eks"
-  tags                    = module.tags.tags
-}
-
 module "eks" {
   source                                     = "git::https://github.com/sourcefuse/terraform-aws-ref-arch-eks-addon?ref=v1.0.0"
   tags                                       = module.tags.tags
