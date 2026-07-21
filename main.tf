@@ -63,26 +63,21 @@ module "eks" {
 
 
 module "eks_blueprints_addons" {
-  source            = "./modules/eks-addons"
-  cluster_name      = module.eks.cluster_id
-  cluster_endpoint  = module.eks.cluster_endpoint
-  cluster_version   = module.eks.cluster_version
-  oidc_provider_arn = module.eks.oidc_provider_arn
+  source = "./modules/eks-addons"
 
-  eks_addons = {
-    aws-ebs-csi-driver = {
-      most_recent = true
-    }
-    coredns = {
-      most_recent = true
-    }
-    vpc-cni = {
-      most_recent = true
-    }
-    kube-proxy = {
-      most_recent = true
-    }
-  }
+  # When create_eks = true the cluster details come from the nested eks module.
+  # When create_eks = false (attach add-ons to an EXISTING cluster) they come
+  # from the caller-supplied variables, since the nested module's outputs are
+  # empty strings while create = false.
+  cluster_name      = var.create_eks ? module.eks.cluster_id : var.cluster_name
+  cluster_endpoint  = var.create_eks ? module.eks.cluster_endpoint : var.cluster_endpoint
+  cluster_version   = var.create_eks ? module.eks.cluster_version : var.cluster_version
+  oidc_provider_arn = var.create_eks ? module.eks.oidc_provider_arn : var.oidc_provider_arn
+
+  # EKS managed add-ons to (re)create. Default keeps the original behaviour;
+  # set to {} when attaching to an existing cluster that already has the core
+  # add-ons (coredns / vpc-cni / kube-proxy) so we don't clash with them.
+  eks_addons = var.eks_addons
 
 
   eks_addons_timeouts                          = var.eks_addons_timeouts

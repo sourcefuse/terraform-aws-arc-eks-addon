@@ -5,12 +5,14 @@ provider "aws" {
 
 provider "bcrypt" {}
 
+# When create_eks = false the module attaches to an EXISTING cluster, so look it
+# up by the caller-supplied name (module.eks.cluster_id is empty in that case).
 data "aws_eks_cluster" "cluster" {
-  name = module.eks.cluster_id
+  name = var.create_eks ? module.eks.cluster_id : var.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.eks.cluster_id
+  name = var.create_eks ? module.eks.cluster_id : var.cluster_name
 }
 
 provider "kubernetes" {
