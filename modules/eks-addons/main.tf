@@ -1061,7 +1061,7 @@ module "aws_load_balancer_controller" {
   # namespace creation is false here as kube-system already exists by default
   create_namespace = try(var.aws_load_balancer_controller.create_namespace, false)
   chart            = "aws-load-balancer-controller"
-  chart_version    = try(var.aws_load_balancer_controller.chart_version, "1.7.1")
+  chart_version    = try(var.aws_load_balancer_controller.chart_version, "3.4.2")
   repository       = try(var.aws_load_balancer_controller.repository, "https://aws.github.io/eks-charts")
   values           = try(var.aws_load_balancer_controller.values, [])
 
@@ -1507,7 +1507,7 @@ module "cert_manager" {
   namespace        = try(var.cert_manager.namespace, "cert-manager")
   create_namespace = try(var.cert_manager.create_namespace, true)
   chart            = "cert-manager"
-  chart_version    = try(var.cert_manager.chart_version, "v1.14.3")
+  chart_version    = try(var.cert_manager.chart_version, "v1.20.3")
   repository       = try(var.cert_manager.repository, "https://charts.jetstack.io")
   values           = try(var.cert_manager.values, [])
 
