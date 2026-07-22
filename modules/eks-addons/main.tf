@@ -812,30 +812,6 @@ data "aws_iam_policy_document" "aws_load_balancer_controller" {
     actions = ["elasticloadbalancing:DescribeTags"]
   }
 
-  # Permissions the AWS Load Balancer Controller v2.7+/v2.13 needs that the
-  # original (v2.4-era) policy above lacks — listener attributes, capacity
-  # reservations, trust stores, IP pools, rule priorities, and newer describes.
-  # Without these the controller fails "FailedDeployModel ... AccessDenied:
-  # elasticloadbalancing:DescribeListenerAttributes" and never wires the ALB.
-  statement {
-    sid       = "AllowV213Permissions"
-    effect    = "Allow"
-    resources = ["*"] #tfsec:ignore:aws-iam-no-policy-wildcards
-
-    actions = [
-      "ec2:DescribeIpamPools",
-      "ec2:DescribeRouteTables",
-      "ec2:GetSecurityGroupsForVpc",
-      "elasticloadbalancing:DescribeCapacityReservation",
-      "elasticloadbalancing:DescribeListenerAttributes",
-      "elasticloadbalancing:DescribeTrustStores",
-      "elasticloadbalancing:ModifyCapacityReservation",
-      "elasticloadbalancing:ModifyIpPools",
-      "elasticloadbalancing:ModifyListenerAttributes",
-      "elasticloadbalancing:SetRulePriorities",
-    ]
-  }
-
   statement {
     sid       = "AllowGetResources"
     effect    = "Allow"
