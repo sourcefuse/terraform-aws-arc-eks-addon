@@ -188,7 +188,7 @@ module "argocd" {
   namespace        = try(var.argocd.namespace, "argocd")
   create_namespace = try(var.argocd.create_namespace, true)
   chart            = "argo-cd"
-  chart_version    = try(var.argocd.chart_version, "5.29.1")
+  chart_version    = try(var.argocd.chart_version, "5.55.0")
   repository       = try(var.argocd.repository, "https://argoproj.github.io/argo-helm")
   values           = try(var.argocd.values, [])
 
@@ -245,7 +245,7 @@ module "aws_cloudwatch_metrics" {
   namespace        = try(var.aws_cloudwatch_metrics.namespace, "amazon-cloudwatch")
   create_namespace = try(var.aws_cloudwatch_metrics.create_namespace, true)
   chart            = "aws-cloudwatch-metrics"
-  chart_version    = try(var.aws_cloudwatch_metrics.chart_version, "0.0.9")
+  chart_version    = try(var.aws_cloudwatch_metrics.chart_version, "0.0.10")
   repository       = try(var.aws_cloudwatch_metrics.repository, "https://aws.github.io/eks-charts")
   values           = try(var.aws_cloudwatch_metrics.values, [])
 
@@ -555,7 +555,7 @@ module "aws_for_fluentbit" {
   namespace        = try(var.aws_for_fluentbit.namespace, "kube-system")
   create_namespace = try(var.aws_for_fluentbit.create_namespace, false)
   chart            = "aws-for-fluent-bit"
-  chart_version    = try(var.aws_for_fluentbit.chart_version, "0.1.24")
+  chart_version    = try(var.aws_for_fluentbit.chart_version, "0.1.32")
   repository       = try(var.aws_for_fluentbit.repository, "https://aws.github.io/eks-charts")
   values           = try(var.aws_for_fluentbit.values, [])
 
@@ -1061,7 +1061,7 @@ module "aws_load_balancer_controller" {
   # namespace creation is false here as kube-system already exists by default
   create_namespace = try(var.aws_load_balancer_controller.create_namespace, false)
   chart            = "aws-load-balancer-controller"
-  chart_version    = try(var.aws_load_balancer_controller.chart_version, "1.4.8")
+  chart_version    = try(var.aws_load_balancer_controller.chart_version, "1.13.4")
   repository       = try(var.aws_load_balancer_controller.repository, "https://aws.github.io/eks-charts")
   values           = try(var.aws_load_balancer_controller.values, [])
 
@@ -1507,7 +1507,7 @@ module "cert_manager" {
   namespace        = try(var.cert_manager.namespace, "cert-manager")
   create_namespace = try(var.cert_manager.create_namespace, true)
   chart            = "cert-manager"
-  chart_version    = try(var.cert_manager.chart_version, "v1.11.1")
+  chart_version    = try(var.cert_manager.chart_version, "v1.20.3")
   repository       = try(var.cert_manager.repository, "https://charts.jetstack.io")
   values           = try(var.cert_manager.values, [])
 
@@ -1649,7 +1649,7 @@ module "cluster_autoscaler" {
   namespace        = try(var.cluster_autoscaler.namespace, "kube-system")
   create_namespace = try(var.cluster_autoscaler.create_namespace, false)
   chart            = "cluster-autoscaler"
-  chart_version    = try(var.cluster_autoscaler.chart_version, "9.29.0")
+  chart_version    = try(var.cluster_autoscaler.chart_version, "9.35.0")
   repository       = try(var.cluster_autoscaler.repository, "https://kubernetes.github.io/autoscaler")
   values           = try(var.cluster_autoscaler.values, [])
 
@@ -2013,7 +2013,7 @@ module "external_secrets" {
   namespace        = try(var.external_secrets.namespace, "external-secrets")
   create_namespace = try(var.external_secrets.create_namespace, true)
   chart            = "external-secrets"
-  chart_version    = try(var.external_secrets.chart_version, "0.8.1")
+  chart_version    = try(var.external_secrets.chart_version, "0.9.13")
   repository       = try(var.external_secrets.repository, "https://charts.external-secrets.io")
   values           = try(var.external_secrets.values, [])
 
@@ -2636,7 +2636,7 @@ module "kube_prometheus_stack" {
   namespace        = try(var.kube_prometheus_stack.namespace, "kube-prometheus-stack")
   create_namespace = try(var.kube_prometheus_stack.create_namespace, true)
   chart            = "kube-prometheus-stack"
-  chart_version    = try(var.kube_prometheus_stack.chart_version, "46.6.0")
+  chart_version    = try(var.kube_prometheus_stack.chart_version, "48.2.3")
   repository       = try(var.kube_prometheus_stack.repository, "https://prometheus-community.github.io/helm-charts")
   values           = try(var.kube_prometheus_stack.values, [])
 
@@ -2689,7 +2689,7 @@ module "metrics_server" {
   namespace        = try(var.metrics_server.namespace, "kube-system")
   create_namespace = try(var.metrics_server.create_namespace, false)
   chart            = "metrics-server"
-  chart_version    = try(var.metrics_server.chart_version, "3.10.0")
+  chart_version    = try(var.metrics_server.chart_version, "3.12.0")
   repository       = try(var.metrics_server.repository, "https://kubernetes-sigs.github.io/metrics-server/")
   values           = try(var.metrics_server.values, [])
 

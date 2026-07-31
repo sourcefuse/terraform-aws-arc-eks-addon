@@ -52,6 +52,29 @@ variable "cluster_version" {
   default     = "1.24"
 }
 
+variable "cluster_endpoint" {
+  description = "API server endpoint of an EXISTING EKS cluster to install add-ons onto. Only used when create_eks = false."
+  type        = string
+  default     = ""
+}
+
+variable "oidc_provider_arn" {
+  description = "OIDC provider ARN of an EXISTING EKS cluster, used for IRSA-backed add-ons. Only used when create_eks = false."
+  type        = string
+  default     = ""
+}
+
+variable "eks_addons" {
+  description = "Map of EKS managed add-ons to create. Defaults to the core set; set to {} when attaching to an existing cluster that already has coredns / vpc-cni / kube-proxy."
+  type        = any
+  default = {
+    aws-ebs-csi-driver = { most_recent = true }
+    coredns            = { most_recent = true }
+    vpc-cni            = { most_recent = true }
+    kube-proxy         = { most_recent = true }
+  }
+}
+
 #-------------------------------
 # EKS Cluster Security Groups
 #-------------------------------
